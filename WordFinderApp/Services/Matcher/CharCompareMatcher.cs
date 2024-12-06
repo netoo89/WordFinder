@@ -8,23 +8,35 @@
 
             var rowArray = row.ToCharArray();
 
-            for (int i = 0; i <= rowArray.Length - word.Length; i++)
-            {
-                var wordIndex = 0;
+            var rowIndex = 0;
 
-                for (int j = i + wordIndex; j < i + word.Length; j++)
+            // foreach(var rowIndex in Enumerable.Range(0, row.Length - word.Length + 1))
+            // for(int rowIndex = 0; rowIndex <= row.Length - word.Length; rowIndex++)
+            while(rowIndex <= rowArray.Length - word.Length)
+            {
+                var rowPosition = rowIndex;
+
+                var found = true;
+
+                foreach(var wordChar in word)
                 {
-                    if (rowArray[j] != word[wordIndex])
+                    if (rowArray[rowPosition] != wordChar)
                     {
+                        found = false;
                         break;
                     }
 
-                    wordIndex++;
+                    rowPosition++;
                 }
 
-                if (wordIndex == word.Length)
+                if (found)
                 {
                     numberOfMatches++;
+                    rowIndex += word.Length;
+                }
+                else
+                {
+                    rowIndex++;
                 }
             }
 
