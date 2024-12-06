@@ -18,7 +18,7 @@ namespace WordFinderApp.Services.Finder
 
             if (!validationResult.IsValid)
             {
-                validationResult.PrintErrors();
+                throw new ArgumentException(string.Join(", ", validationResult.Errors));
             }
 
             _matrix = matrix;
@@ -46,26 +46,22 @@ namespace WordFinderApp.Services.Finder
 
             var wordMatches = new Dictionary<string, int>();
 
-            var numberOfHorizontalRows = _matrix.Count();
-
             var numberOfVerticalRows = _matrix.FirstOrDefault()?.Length;
 
-            foreach (var word in wordStream)
+            foreach(var word in wordStream)
             {
                 var numberOfMatches = 0;
 
                 // Horizontal look up
-                for (var row = 0; row < numberOfHorizontalRows; row++)
+                foreach(var currentHorizontalRow in _matrix)
                 {
-                    var currentHorizontalRow = _matrix.ElementAt(row);
-
                     numberOfMatches += _wordMatcher.CountRowMatches(currentHorizontalRow, word);
                 }
 
                 // Vertical look up
                 for (var column = 0; column < numberOfVerticalRows; column++)
                 {
-                    var currentVerticalRow = _matrix.Select(r => r.ElementAt(column)).ToArray();
+                    var currentVerticalRow = _matrix.Select(r => r[column]).ToArray();
 
                     numberOfMatches += _wordMatcher.CountRowMatches(new string(currentVerticalRow), word);
                 }
