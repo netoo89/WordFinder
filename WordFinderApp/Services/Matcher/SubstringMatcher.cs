@@ -6,13 +6,20 @@
         {
             var numberOfMatches = 0;
 
-            for (int i = 0; i <= row.Length - word.Length; i++)
-            {
-                var subString = row.Substring(i, word.Length);
+            var rowPosition = 0;
 
-                if (word == subString)
+            while(rowPosition <= row.Length - word.Length)
+            {
+                var foundMatch = row.Substring(rowPosition, word.Length) == word;
+
+                if (foundMatch)
                 {
                     numberOfMatches++;
+                    rowPosition += word.Length;
+                }
+                else
+                {
+                    rowPosition++;
                 }
             }
 
