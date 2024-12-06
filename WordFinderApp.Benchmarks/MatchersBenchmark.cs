@@ -26,7 +26,7 @@ namespace WordFinderApp.Benchmarks
         [GlobalCleanup]
         public void Cleanup()
         {
-            _words = [];
+            _words = null;
         }
 
         [Benchmark]

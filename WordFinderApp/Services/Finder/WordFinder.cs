@@ -46,24 +46,16 @@ namespace WordFinderApp.Services.Finder
 
             var wordMatches = new Dictionary<string, int>();
 
-            var numberOfVerticalRows = _matrix.FirstOrDefault()?.Length;
+            // Get horizontal and vertical rows as a ReadOnlySpan to increase performance and reduce memory usage
+            var rows = GetRows();
 
-            foreach(var word in wordStream)
+            foreach (var word in wordStream)
             {
                 var numberOfMatches = 0;
 
-                // Horizontal look up
-                foreach(var currentHorizontalRow in _matrix)
+                foreach(var currentRow in rows)
                 {
-                    numberOfMatches += _wordMatcher.CountRowMatches(currentHorizontalRow, word);
-                }
-
-                // Vertical look up
-                for (var column = 0; column < numberOfVerticalRows; column++)
-                {
-                    var currentVerticalRow = _matrix.Select(r => r[column]).ToArray();
-
-                    numberOfMatches += _wordMatcher.CountRowMatches(new string(currentVerticalRow), word);
+                    numberOfMatches += _wordMatcher.CountRowMatches(currentRow, word);
                 }
 
                 // Only create an entry in the dictionary for those words that are found to save memory
@@ -81,6 +73,22 @@ namespace WordFinderApp.Services.Finder
             return wordMatches.OrderByDescending(wm => wm.Value)
                               .Take(MatrixConstants.ReturnTop)
                               .Select(wm => wm.Key);
+        }
+
+        private ReadOnlySpan<string> GetRows()
+        {
+            var rows = new List<string>(_matrix);
+
+            var numberOfColumns = _matrix.FirstOrDefault()?.Length ?? 0;
+
+            for (var column = 0; column < numberOfColumns; column++)
+            {
+                var verticalRow = _matrix.Select(r => r[column]).ToArray();
+
+                rows.Add(new string(verticalRow));
+            }
+
+            return new ReadOnlySpan<string>([.. rows]);
         }
     }
 }
