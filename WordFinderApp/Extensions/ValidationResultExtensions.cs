@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace WordFinder.Extensions
+namespace WordFinderApp.Extensions
 {
     public static class ValidationResultExtensions
     {

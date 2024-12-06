@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WordFinder
+﻿namespace WordFinderApp.Constants
 {
-    public static class Constants
+    public static class MatrixConstants
     {
         public const int MatrixMaxRowNumber = 64;
         public const int MatrixMaxColumnNumber = 64;

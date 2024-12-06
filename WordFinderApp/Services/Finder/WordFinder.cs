@@ -1,9 +1,9 @@
-﻿using System.Text.RegularExpressions;
-using WordFinder.Extensions;
-using WordFinder.Services.Matcher;
-using WordFinder.Validators;
+﻿using WordFinderApp.Constants;
+using WordFinderApp.Extensions;
+using WordFinderApp.Services.Matcher;
+using WordFinderApp.Validators;
 
-namespace WordFinder
+namespace WordFinderApp.Services.Finder
 {
     public class WordFinder
     {
@@ -18,7 +18,7 @@ namespace WordFinder
 
             if (!validationResult.IsValid)
             {
-                validationResult.PrintErrors();             
+                validationResult.PrintErrors();
             }
 
             _matrix = matrix;
@@ -71,7 +71,7 @@ namespace WordFinder
                 }
 
                 // Only create an entry in the dictionary for those words that are found to save memory
-                if(numberOfMatches > 0)
+                if (numberOfMatches > 0)
                 {
                     wordMatches[word] = numberOfMatches;
                 }
@@ -83,7 +83,7 @@ namespace WordFinder
             }
 
             return wordMatches.OrderByDescending(wm => wm.Value)
-                              .Take(Constants.ReturnTop)
+                              .Take(MatrixConstants.ReturnTop)
                               .Select(wm => wm.Key);
         }
     }

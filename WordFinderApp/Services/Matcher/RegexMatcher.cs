@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace WordFinder.Services.Matcher
+namespace WordFinderApp.Services.Matcher
 {
     public class RegexMatcher : IWordMatcher
     {
