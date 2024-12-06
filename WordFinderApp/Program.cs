@@ -1,22 +1,24 @@
 ﻿using System.Diagnostics;
-using WordFinder.Services.Matcher;
+using WordFinderApp.Constants;
+using WordFinderApp.Services.Matcher;
+using WordFinderApp.Services.Finder;
 
-namespace WordFinder
+namespace WordFinderApp
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var wordFinder = new WordFinder(Constants.Matrix);
+            var wordFinder = new WordFinder(MatrixConstants.Matrix);
             wordFinder.SetWordMatcherStragegy(new ReplaceMatcher());
 
             var watch = Stopwatch.StartNew();
 
-            var topRepeatedWords = wordFinder.Find(Constants.Words);
+            var topRepeatedWords = wordFinder.Find(MatrixConstants.Words);
 
             watch.Stop();
 
-            Console.WriteLine($"\nTop {Constants.ReturnTop} repeated words");
+            Console.WriteLine($"\nTop {MatrixConstants.ReturnTop} repeated words");
 
             foreach (var word in topRepeatedWords)
             {

@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
+using WordFinderApp.Constants;
 
-namespace WordFinder.Validators
+namespace WordFinderApp.Validators
 {
     public class WordStreamValidator : AbstractValidator<IEnumerable<string>>
     {
         public WordStreamValidator()
         {
-            RuleFor(stream => stream).NotNull().WithMessage("Word stream is null");
+            RuleFor(stream => stream).NotNull().WithMessage(ErrorConstants.NullWordStreamError);
         }
     }
 }

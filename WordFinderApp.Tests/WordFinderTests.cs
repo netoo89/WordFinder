@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
-using WordFinder.Services.Matcher;
+using WordFinderApp.Constants;
+using WordFinderApp.Services.Matcher;
+using WordFinderApp.Services.Finder;
 
-namespace WordFinder.Tests
+namespace WordFinderApp.Tests
 {
     public class WordFinderTests
     {
@@ -14,9 +16,9 @@ namespace WordFinder.Tests
         [SetUp]
         public void Setup()
         {
-            _wordFinder = new WordFinder(Constants.Matrix);
+            _wordFinder = new WordFinder(MatrixConstants.Matrix);
 
-            _words = Constants.Words;
+            _words = MatrixConstants.Words;
 
             _watch = new Stopwatch();
         }
@@ -84,7 +86,7 @@ namespace WordFinder.Tests
 
         private void PrintTestDetails(string matcherName, IEnumerable<string> topRepeatedWords)
         {
-            Console.WriteLine($"\nTop {Constants.ReturnTop} repeated words");
+            Console.WriteLine($"\nTop {MatrixConstants.ReturnTop} repeated words");
 
             foreach (var word in topRepeatedWords)
             {
