@@ -9,7 +9,7 @@ On Windows
 ![image](https://github.com/user-attachments/assets/2a2af82c-0698-45d0-bc19-d4839f541189)
 
 On Mac
-![image](https://github.com/user-attachments/assets/f8aca2c9-b42b-4d2d-8659-a793f1adbd46)
+![image](https://github.com/user-attachments/assets/21879b7d-95fa-4998-b352-26a1489454a3)
 
 To improve performance the following actions were also made:
 
