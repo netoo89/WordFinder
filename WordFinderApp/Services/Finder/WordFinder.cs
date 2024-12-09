@@ -49,7 +49,9 @@ namespace WordFinderApp.Services.Finder
             // Get horizontal and vertical rows as a ReadOnlySpan to increase performance and reduce memory usage
             var rows = GetRows();
 
-            foreach (var word in wordStream)
+            var words = new ReadOnlySpan<string>([..wordStream]);
+
+            foreach (var word in words)
             {
                 var numberOfMatches = 0;
 
@@ -83,9 +85,9 @@ namespace WordFinderApp.Services.Finder
 
             for (var column = 0; column < numberOfColumns; column++)
             {
-                var verticalRow = _matrix.Select(r => r[column]).ToArray();
+                var verticalRow = _matrix.Select(r => r[column]);
 
-                rows.Add(new string(verticalRow));
+                rows.Add(string.Concat(verticalRow));
             }
 
             return new ReadOnlySpan<string>([.. rows]);

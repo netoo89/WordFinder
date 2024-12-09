@@ -5,7 +5,7 @@ using WordFinderApp.Services.Matcher;
 
 namespace WordFinderApp.Benchmarks
 {
-    [MemoryDiagnoser]
+    [MemoryDiagnoser, RankColumn]
     public class MatchersBenchmark
     {
         [Params(50000)]
