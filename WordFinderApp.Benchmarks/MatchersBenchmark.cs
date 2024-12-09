@@ -78,5 +78,15 @@ namespace WordFinderApp.Benchmarks
 
             _wordFinder.Find(_words);
         }
+
+        [Benchmark]
+        public void SliceMatcher()
+        {
+            var sliceMatcher = new SliceMatcher();
+
+            _wordFinder.SetWordMatcherStragegy(sliceMatcher);
+
+            _wordFinder.Find(_words);
+        }
     }
 }

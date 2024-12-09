@@ -71,6 +71,14 @@ namespace WordFinderApp.Tests
             TestMatcher(charCompareMatcher);
         }
 
+        [Test]
+        public void TestSliceMatcher()
+        {
+            var replaceMatcher = new SliceMatcher();
+
+            TestMatcher(replaceMatcher);
+        }
+
         private void TestMatcher(IWordMatcher matcher)
         {
             _watch.Restart();
